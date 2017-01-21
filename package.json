@@ -1,0 +1,29 @@
+{
+  "name": "aircrack-tool",
+  "version": "1.0.2",
+  "description": "Aircrack tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "minimist": "github:substack/minimist",
+    "unload": "^1.3.5",
+    "uuid": "^3.0.1",
+    "xml2json": "^0.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gufoe/aircrack-tool"
+  },
+  "keywords": [
+    "aircrack",
+    "wifi",
+    "tool"
+  ],
+  "bugs": {
+    "url": "https://github.com/gufoe/aircrack-tool/issues"
+  },
+  "author": "Giacomo Rizzi <gufoes@gmail.com>",
+  "license": "ISC"
+}
