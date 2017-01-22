@@ -1,15 +1,16 @@
 
 const Air = require('./');
-const AirTest = require('./test/');
+// const AirTest = require('./test/');
 const fs = require('fs');
 const path = require('path');
 
 // -c 11 --update 3 --wps -a
 
 let fileCounter = 0;
-let shell = new Air.dump(['wlan1mon', '-a', '--wps', '-c', '11', '--update', '3']);
+let shell = new Air.dump(['wlan1', '-a', '--wps', '-c', '11', '--update', '3']);
 
 shell.on('debug', function(){
+    if ('exec' == name) return;
     let [name, action, ...args] = arguments;
     console.log(name, action, args);
 });
@@ -18,7 +19,7 @@ shell.on('debug', function(){
 shell.on('stderr', function(data){
     if (this._isDead) return;
 
-    let filename  = [this._command, 'stderr', ++fileCounter, '.txt'].join('.');
+    let filename  = [this._command, 'stderr', ++fileCounter, 'txt'].join('.');
     let filepath  = path.resolve(__dirname, './test/dump/', filename);
     // console.log(filepath);
     fs.writeFile(filepath, data, 'utf8', (err) => {
