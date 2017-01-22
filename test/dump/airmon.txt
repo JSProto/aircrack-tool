@@ -1,0 +1,6 @@
+
+PHY	Interface	Driver		Chipset
+
+phy1	wlan0		??????		Broadcom 43430
+phy0	wlan1		rtl8187		Realtek Semiconductor Corp. RTL8187
+

@@ -1,0 +1,10 @@
+
+PHY	Interface	Driver		Chipset
+
+phy1	wlan0		??????		Broadcom 43430
+phy0	wlan1mon	rtl8187		Realtek Semiconductor Corp. RTL8187
+
+		(mac80211 station mode vif enabled on [phy0]wlan1)
+
+		(mac80211 monitor mode vif disabled for [phy0]wlan1mon)
+

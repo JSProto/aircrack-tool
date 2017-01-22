@@ -1,0 +1,12 @@
+
+Found 5 processes that could cause trouble.
+If airodump-ng, aireplay-ng or airtun-ng stops working after
+a short period of time, you may want to kill (some of) them!
+
+  PID Name
+  718 NetworkManager
+  870 dhclient
+ 1104 avahi-daemon
+ 1105 avahi-daemon
+ 1115 wpa_supplicant
+

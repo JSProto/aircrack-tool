@@ -1,0 +1,7 @@
+
+Killing these processes:
+
+  PID Name
+  870 dhclient
+ 1115 wpa_supplicant
+
