@@ -1,6 +1,6 @@
 
-const Air = require('./');
-// const AirTest = require('./test/');
+// const Air = require('./');
+const Air = require('./test/');
 const fs = require('fs');
 const path = require('path');
 
@@ -10,8 +10,8 @@ let fileCounter = 0;
 let shell = new Air.dump(['wlan1', '-a', '--wps', '-c', '11', '--update', '3']);
 
 shell.on('debug', function(){
-    if ('exec' == name) return;
     let [name, action, ...args] = arguments;
+    if ('exec' == name) return;
     console.log(name, action, args);
 });
 
