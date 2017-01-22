@@ -7,7 +7,7 @@ const path = require('path');
 // -c 11 --update 3 --wps -a
 
 let fileCounter = 0;
-let shell = new Air.dump(['wlan1', '-a', '--wps', '-c', '11', '--update', '3']);
+let shell = new Air.dump('wlan1', '-a', '--wps', '-c', '11', '--update', '3');
 
 shell.on('debug', function(){
     let [name, action, ...args] = arguments;
