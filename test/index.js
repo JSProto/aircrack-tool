@@ -4,7 +4,7 @@ let Air = require('../');
 
 let exec = function (files) {
 
-    let stream = (this._command == 'airodump-ng' ? 'stderr' : 'stdout');
+    let streamName = (this._command == 'airodump-ng' ? 'stderr' : 'stdout');
 
     this.debug('exec', this._command);
 
@@ -16,9 +16,9 @@ let exec = function (files) {
 	        }
 
 	        data = data.toString('utf8');
-	        this.debug(stream, data);
+	        this.debug(streamName, data);
 	        if (!this._isDead) {
-	            this.emit(stream, data);
+	            this.emit(streamName, data);
 	        }
 
 	        this.debug('exit', 0);
@@ -30,7 +30,7 @@ let exec = function (files) {
     return this;
 };
 
-Air.mon.prototype.__proto__.exec = exec;
+Air.abstract.prototype.exec = exec;
 
 
 module.exports = Air;
