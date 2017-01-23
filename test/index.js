@@ -21,12 +21,12 @@ let exec = function (files) {
 	            this.emit(streamName, data);
 	        }
 
-	        this.debug('exit', 0);
-	        this.emit('exit', 0);
-	        this.debug('close', 0);
 	    });
     });
 
+    // this.debug('exit', 0);
+    // this.emit('exit', 0);
+    // this.debug('close', 0);
     return this;
 };
 
