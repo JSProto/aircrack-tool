@@ -4,33 +4,43 @@ const Air = require('./test/');
 const fs = require('fs');
 const path = require('path');
 
-// -c 11 --update 3 --wps -a
 
 let fileCounter = 0;
 let shell = new Air.dump('wlan1', '-a', '--wps', '-c', '11', '--update', '3');
 
 shell.on('debug', function(){
     let [name, action, ...args] = arguments;
-    if ('exec' == name) return;
-    console.log(name, action, args);
+
+    console.log(name, action);
 });
 
 
-shell.on('stderr', function(data){
-    if (this._isDead) return;
+// shell.on('data', function(data){
+//     if (this._isDead) return;
 
-    let filename  = [this._command, 'stderr', ++fileCounter, 'txt'].join('.');
-    let filepath  = path.resolve(__dirname, './test/dump/', filename);
-    // console.log(filepath);
-    fs.writeFile(filepath, data, 'utf8', (err) => {
-        if (err) throw err;
-        this.debug('dump saved to ' + filepath);
-    });
-});
+//     let filename  = [this._command, ++fileCounter, 'txt'].join('.');
+//     let filepath  = path.resolve(__dirname, './test/dump/', filename);
+//     // console.log(filepath);
+//     fs.writeFile(filepath, data, 'utf8', (err) => {
+//         if (err) throw err;
+//         this.debug('dump saved to ' + filepath);
+//     });
+// });
 
 
 
-shell.exec(['./test/dump/airdump.txt']);
+shell.exec([
+    './test/dump/airodump-ng.stderr.1.txt',
+    './test/dump/airodump-ng.stderr.2.txt',
+    './test/dump/airodump-ng.stderr.3.txt',
+    './test/dump/airodump-ng.stderr.4.txt',
+    './test/dump/airodump-ng.stderr.5.txt',
+    // './test/dump/airodump-ng.stderr.6.txt',
+    // './test/dump/airodump-ng.stderr.7.txt',
+    // './test/dump/airodump-ng.stderr.8.txt',
+    // './test/dump/airodump-ng.stderr.9.txt',
+    // './test/dump/airodump-ng.stderr.10.txt'
+]);
 
 
 let cmd = `
