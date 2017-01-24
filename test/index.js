@@ -1,6 +1,8 @@
 
 const fs = require('fs');
-let Air = require('../');
+
+let AirWrapper = require('../lib/air-wrapper');
+
 
 let exec = function (files) {
 
@@ -8,29 +10,34 @@ let exec = function (files) {
 
     this.debug('exec', this._command);
 
-    files.forEach((file) => {
-	    fs.readFile(file, (error, data) => {
-	        if (error) {
-	            this.debug('error', error);
-	            return this.emit('error', error);
-	        }
+    files.reduce((sequence, file) => {
 
-	        data = data.toString('utf8');
-	        this.debug(streamName, data);
-	        if (!this._isDead) {
-	            this.emit(streamName, data);
-	        }
+    	return sequence.then(() => {
+			return new Promise((resolve, reject) => {
 
-	    });
+			    fs.readFile(file, (error, data) => {
+			        if (error) {
+			            this.debug('error', error);
+			            return this.emit('error', error);
+			        }
+
+			        data = data.toString('utf8');
+			        this.debug(streamName, data);
+			        if (!this._isDead) {
+			            this.emit(streamName, data);
+			        }
+
+			        resolve();
+			    });
+			});
+    	})
+    }, Promise.resolve()).then(() => {
+		this.debug('exit', 0);
+		this.emit('exit', 0);
+		this.debug('close', 0);
     });
 
-    // this.debug('exit', 0);
-    // this.emit('exit', 0);
-    // this.debug('close', 0);
     return this;
 };
 
-Air.abstract.prototype.exec = exec;
-
-
-module.exports = Air;
+AirWrapper.prototype.exec = exec;
